@@ -1,0 +1,137 @@
+&!==============================================================================
+&!
+&!  VERSION: v01
+&!  FUNCTION : Convert SAF to SPS format 
+&!
+&!  This skeleton will:
+&!  1) Convert a receiver grid saf file to SPS format 
+&!  2) Convert a shot grid saf file to SPS format 
+&!
+&!  NOTES: The saf files must contain the following relevent information
+&!  RECPT, RECLIN, XREC, YREC for the receiver file and SHTPT, SHTLIN, XSHT and
+&!  YSHT for the shot file. Alternative idents can be used but will require 
+&!  modification of the SQ2ASC cards shown below.
+&!  
+&!  For the SPS conversion, a dummy SPS header is added to the output files.
+&!
+&!  AUTHOR(S) : C. Willacy, May 2021
+&!
+&!==============================================================================
+&!
+& include 	'global_parameter_declaration'
+&!
+& character 	POOL =  'ird_ict1'
+&!
+&!==============================================================================
+&! SIPMAP dependencies:
+&!==============================================================================
+&!
+& character 	sip_rel 		= 'latest'
+& character 	OUT_DIR 		= $DATA_DIR + '/' + $JOBTYP 
+& sub(#1,a0) 	OUT_DIR
+export OUT_DIR=#1
+mkdir -p $OUT_DIR 
+&!
+&!==============================================================================
+&! User Options for the skeleton.
+&!==============================================================================
+&!\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+&!//////////////////////////////////////////////////////////////////////////////
+&!
+&!....1) DEFINE THE SPS GEOMETRY FILES FROM BORIS' PYTHON TOOL & ADJUST SORT SIZE AS NEEDED 
+&!
+& character 	source_input 		= 'saf.01-test_sht' 
+& character 	receiver_input 		= 'saf.00-test_rec'
+&!
+&!//////////////////////////////////////////////////////////////////////////////
+&!\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+&!==============================================================================
+&!
+& integer 	mem_per_core_mb
+&!
+& call sys_config:get_system_config(chk_system => 'linux_fe',      &
+&                                   maxmem_mb => mem_per_core_mb)
+&!
+& call begin_job(RELEASE => sip_rel)   !SIPMAP release to use
+&!
+& call begin_sesam_deck()
+&!
+INFO
+STLIST  OPER  OPER   RUN
+INFO
+& call io:sqsaf_in(sqsaf => {                &
+&    data_set => receiver_input,             &
+&    exec => 'EXEC'                          &
+& },                                         &
+&                  mode => 'DECLARE+CARDS')
+INFO
+SRTALLRECLIN RECPT                    5000 MEMMB
+INFO
+DSCOUT                  receiver.saf                                          
+SQSAF
+INFO
+CON
+INFO
+INFO
+DSCIN                   receiver.saf                                          
+SQSAF                                       EXEC
+INFO
+INFO  AscfldAscfor
+SQ2ASC            NOINFO
+INFO
+SAFSETRECLIN RECPT  ZREC  XREC  YREC
+INFO   Output file name 
+FILNAMSPS.r
+INFO  KeystaKeyendKeylab...............................................>
+ASCKEY     1     1R                                                           
+INFO  AscstaAscendAscfor
+ASCFOR     2    10   FLT
+ASCFOR    18    25   INT
+ASCFOR    33    36   FLT
+ASCFOR    47    55   INT
+ASCFOR    56    65   INT
+INFO
+EXUNIX  EXEC                                             EOD
+UNIX  cp /glb/data/ict1/jobpro/eptr_ai/deblend_dev/input/spsheader.r $OUT_DIR/SPS.r 
+UNIX  cat $TMPDIR_SHARED/SPS.r >> $OUT_DIR/SPS.r
+CON
+& call io:sqsaf_in(sqsaf => {                &
+&    data_set => source_input,               &
+&    exec => 'EXEC'                          &
+& },                                         &
+&                  mode => 'DECLARE+CARDS')
+INFO
+SRTALLSHTLIN SHTPT                    5000 MEMMB
+INFO
+DSCOUT                  source.saf                                            
+SQSAF
+INFO
+CON
+INFO
+INFO
+DSCIN                   source.saf                                            
+SQSAF                                       EXEC
+INFO
+INFO  AscfldAscfor
+SQ2ASC            NOINFO
+INFO
+SAFSETSHTLIN SHTPT  ZSHT  XSHT  YSHT
+INFO   Output file name 
+FILNAMSPS.s
+INFO  KeystaKeyendKeylab...............................................>
+ASCKEY     1     1S                                                           
+INFO  AscstaAscendAscfor
+ASCFOR     2    10   FLT
+ASCFOR    18    25   INT
+ASCFOR    33    36   FLT
+ASCFOR    47    55   INT
+ASCFOR    56    65   INT
+INFO
+EXUNIX  EXEC                                             EOD
+UNIX  cp /glb/data/ict1/jobpro/eptr_ai/deblend_dev/input/spsheader.s $OUT_DIR/SPS.s 
+UNIX  cat $TMPDIR_SHARED/SPS.s >> $OUT_DIR/SPS.s
+INFO
+& call end_sesam_deck()
+&!
+& call end_job()
+& call jpr_validate()
