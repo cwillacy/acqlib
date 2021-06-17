@@ -17,6 +17,7 @@
 &	wavelet_t0	: integer=0,		&! wavelet time start in ms
 &	tmax_in		: integer=10000,	&! length of input trace 
 &	tmax_cont	: integer=8000,		&! length of output trace (continuous record) 
+&	srtall_maxsize	: integer=5000,		&! max memory for srtall 
 &	dt		: integer=4		&! sample interval (ms) 
 & )
 INFO  ======================================================================
@@ -52,7 +53,8 @@ BLAPLY  TMAX
 & sub(@13,i6) 400/dt
 BLAPLY  INIT
 INFO
-SRTALLSHTLIN SHTPT   ASC   ASC      500000MEMTRA
+& sub(@31,i12) srtall_maxsize 
+SRTALLSHTLIN SHTPT   ASC   ASC                MB
 INFO
 INFO  make several copies of input trace to prepare cut
 INFO  RECST is the trace number in continuous record
@@ -112,7 +114,8 @@ HHCHAN  TMIN     0  TMAX
 INFO
 INFO  blend
 INFO
-SRTALLRECLIN RECPT   ASC           5000000 TRACE
+& sub(@31,i12) srtall_maxsize 
+SRTALLRECLIN RECPT   ASC                      MB
 SORBAD RECST
 INFO
 SUMMIT     0RECLIN RECPT RECST

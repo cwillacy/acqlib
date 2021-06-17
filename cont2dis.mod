@@ -18,6 +18,7 @@
 &	tmax_in		: integer=10000,	&! length of input trace 
 &	tmax_cont	: integer=8000,		&! length of output trace (continuous record) 
 &	reciprocity	: boolean=false,	&! reapply reciporcity on output 
+&	srtall_maxsize	: integer=5000,		&! max memory for srtall 
 &	dt		: integer=4		&! sample interval (ms) 
 & )
 INFO  ======================================================================
@@ -51,7 +52,8 @@ STAPLY   PRE             LMS73  T143
 INFO
 INFO  blend
 INFO  SORBET RECST         ASC        1000  1000                        STOPAR
-SRTALL RECST                          5000    MB
+& sub(@31,i12) srtall_maxsize 
+SRTALL RECST                                  MB
 SUMMIT     0RECST
 INFO
 INFO  only select continuous record which has the start of shot record
