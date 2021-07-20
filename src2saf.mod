@@ -181,6 +181,13 @@ INFO
 SQUTILDELETE
 SAFSETUSPAR0
 INFO
+SQMANI  EXPR
+SQEXPR SHTST = 0.;
+& sub(@67,i6) sqsort_maxrec
+SQSORT  YSHT        XSHT
+RNIDNT SHTST      INCPAN
+SAFSET  YSHT  XSHT
+INFO
 INFO  ================================================
 INFO  END OF SRC2SAF SLANG MODULE PROCESSING SEQUENCE
 INFO  ================================================

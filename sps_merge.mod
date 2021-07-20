@@ -13,7 +13,7 @@
 &!
 &!==========================================================================
 & module sps_merge(           	  		&
-&  ident		: boolean=true,  	&! switch to perform re-identing 
+&  ident		: boolean=false  	&! switch to perform re-identing 
 &  sqsort_maxrec	: integer=1000		&! sqsort max recs
 & )
 INFO  ================================================
@@ -26,8 +26,8 @@ SAFLIB            SAF_S
 SAFLIB            SAF_R           
 INFO
 INFO
-SQMANI  EXPR
-SQEXPR SHT = SHTPT ;
+INFO  SQMANI  EXPR
+INFO  SQEXPR SHT = SHTST ;
 INFO
 & if (ident) then
 INFO  Some re-calculation of the main index idents should be performed

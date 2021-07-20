@@ -13,7 +13,7 @@
 &!
 &!==========================================================================
 & module sps_merge_recip(           	  		&
-&  ident		: boolean=true,  	&! switch to perform re-identing 
+&  ident		: boolean=false  	&! switch to perform re-identing 
 &  sqsort_maxrec	: integer=1000		&! sqsort max recs
 & )
 INFO  ================================================
@@ -35,7 +35,6 @@ SQEXPR SCRAT5= SHT;
 SQEXPR SCRAT6= SHTLIN;
 SQEXPR SCRAT7= SHTPT;
 SQEXPR SCRAT8= RECLIN;
-SQEXPR SHT= RECST;
 SQEXPR SHTLIN= SCRAT8;
 SQEXPR SHTPT= SCRAT4;
 SQEXPR XSHT= SCRAT1;
@@ -50,9 +49,15 @@ SQEXPR USPAR0= ZSHT;
 SQEXPR USPAR1= ZREC;
 SQEXPR ZSHT= USPAR1;
 SQEXPR ZREC= USPAR0;
+SQEXPR USPAR2= SHTST;
+SQEXPR USPAR3= RECST;
+SQEXPR SHTST = USPAR3;
+SQEXPR RECST = USPAR2;
+SQEXPR SHT = SHTST;
 INFO
 SQUTILDELETE
-SAFSETSCRAT0SCRAT1SCRAT2SCRAT3SCRAT4SCRAT5SCRAT6SCRAT7SCRAT8USPAR0USPAR1
+SAFSETSCRAT0SCRAT1SCRAT2SCRAT3SCRAT4SCRAT5SCRAT6SCRAT7SCRAT8USPAR0USPAR1USPAR2
+SAFSETUSPAR3
 INFO
 & if (ident) then
 INFO  Some re-calculation of the main index idents should be performed

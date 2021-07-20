@@ -42,6 +42,7 @@ mkdir -p $OUT_DIR
 &!
 & character 	source_input 		= 'saf.01-test_sht' 
 & character 	receiver_input 		= 'saf.00-test_rec'
+& boolean	reident_rec		= false
 &!
 &!//////////////////////////////////////////////////////////////////////////////
 &!\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -65,9 +66,34 @@ INFO
 & },                                         &
 &                  mode => 'DECLARE+CARDS')
 INFO
+& if reident_rec then
+INFO
+SQMANI  EXPR
+SQEXPR RECST = 0.
+INFO
+INFO  calc rec count
+INFO
+SRTALL  YREC  XREC                    5000 MEMMB
+INFO
+RNIDNT RECST      INCPAN
+SAFSET  YREC  XREC
+INFO
+INFO  calc reclin 
+INFO
+RNIDNTRECLIN      INCPAN
+SAFSET  YREC 
+INFO
+INFO  calc recpt
+INFO
+RNIDNT RECST      INCPAN
+SAFSET  XREC
+& endif
+INFO
+INFO
 SRTALLRECLIN RECPT                    5000 MEMMB
 INFO
 DSCOUT                  receiver.saf                                          
+MEDCTLFILE_SIZE=100GB
 SQSAF
 INFO
 CON
@@ -104,6 +130,7 @@ INFO
 SRTALLSHTLIN SHTPT                    5000 MEMMB
 INFO
 DSCOUT                  source.saf                                            
+MEDCTLFILE_SIZE=100GB
 SQSAF
 INFO
 CON
