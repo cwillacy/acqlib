@@ -13,7 +13,7 @@
 &!
 &!==========================================================================
 & module sps_merge(           	  		&
-&  ident		: boolean=false  	&! switch to perform re-identing 
+&  ident		: boolean=false,  	&! switch to perform re-identing 
 &  sqsort_maxrec	: integer=1000		&! sqsort max recs
 & )
 INFO  ================================================
