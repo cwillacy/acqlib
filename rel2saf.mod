@@ -20,7 +20,8 @@ INFO  ================================================
 INFO  START OF REL2SAF SLANG MODULE PROCESSING SEQUENCE
 INFO  ================================================
 INFO
-DSCOUT                  relational_file                                               
+DSCOUT                  relational_file*                                       
+INFO  MEDCTL FILE_SIZE=150GB
 CARDIM ASCII 
 & sub(#1,a0) filename
 FILNAM#1                                                                       
@@ -44,7 +45,7 @@ INFO  X-FRRE = GRPBEG 	= from receiver
 INFO  X-TORE = GRPEND 	= to receiver 
 INFO  X-RIND = RECIDX 	= receiver index 
 INFO  --------------------------------------------------
-DSCIN                   relational_file                                               
+DSCIN                   relational_file*                                               
 UKTOPO ASCII  SPSX                        999999
 INFO
 INFO  UKFOR X-TAPE  2  7
