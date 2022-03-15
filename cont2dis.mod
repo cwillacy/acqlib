@@ -17,7 +17,8 @@
 &	wavelet_t0	: integer=0,		&! wavelet time start in ms
 &	tmax_in		: integer=10000,	&! length of input trace 
 &	tmax_cont	: integer=8000,		&! length of output trace (continuous record) 
-&	reciprocity	: boolean=false,	&! reapply reciporcity on output 
+&	reciprocity	: boolean=false,	&! reapply reciprocity on output 
+&	nozcpy		: boolean=false,	&! do not transfer depths from saf  
 &	srtall_maxsize	: integer=5000,		&! max memory for srtall 
 &	dt		: integer=4		&! sample interval (ms) 
 & )
@@ -96,9 +97,14 @@ THLIST             20000
 THMNE  SHTSTSHTLIN SHTPT  DATE  TIME
 INFO
 SQXFERSHTLINSHTLIN SHTPT SHTPT                        REJIGNMEMMEM      REIDNT
-SQXSOR                       1000000
+SQXSOR                       2500000
+& if (nozcpy) then
+SAFSET  XSHT  YSHT  XREC  YREC
+THSET   XSHT  YSHT  XREC  YREC
+& else
 SAFSET  XSHT  YSHT  ZSHT  XREC  YREC  ZREC
 THSET   XSHT  YSHT  ZSHT  XREC  YREC  ZREC
+& endif
 INFO
 INFO  define some additional idents for later use
 INFO
@@ -107,8 +113,11 @@ THEXPR XSHTST = XSHT   ;
 THEXPR XRECST = XREC   ;
 THEXPR YSHTST = YSHT   ;
 THEXPR YRECST = YREC   ;
+& if (nozcpy) then
+& else
 THEXPR ZSHTST = ZSHT   ;
 THEXPR ZRECST = ZREC   ;
+& endif
 THEXPR SHOTDP = ZSHT   ;
 THEXPR RCVRDP = ZREC   ;
 THEXPR XDISTX = XSHT   - XREC   ;
