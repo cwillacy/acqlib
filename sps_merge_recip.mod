@@ -12,16 +12,16 @@
 &! Date         : 29-July-2020 
 &!
 &!==========================================================================
-& module sps_merge_recip(           	&
-&  ident		: boolean=false,  	      &! switch to perform re-identing 
-&  rinc			: integer=1,  		        &! receiver increment odd/even flag
-&  sqsort_maxrec	: integer=1000		  &! sqsort max recs
+& module sps_merge_recip(           	  		&
+&  ident		: boolean=false,  	&! switch to perform re-identing 
+&  rinc			: integer=1,  		&! receiver increment odd/even flag 
+&  sqsort_maxrec	: integer=1000		&! sqsort max recs
 & )
 INFO  ================================================
 INFO  START OF SPS_MERGE SLANG MODULE PROCESSING SEQUENCE
 INFO  ================================================
 INFO
-& sub(@61,i6) rinc
+& sub(@61,i6) rinc 
 SQTOPCSHTLIN SHTPTRECLIN RECPTCHNBEGCHNENDGRPBEGGRPEND
 SAFLIB            SAF_X           
 SAFLIB            SAF_S           
@@ -56,6 +56,10 @@ SQEXPR USPAR3= RECST;
 SQEXPR SHTST = USPAR3;
 SQEXPR RECST = USPAR2;
 SQEXPR SHT = SHTST;
+SQEXPR SHOTDP = ZSHT;
+SQEXPR RCVRDP = ZREC;
+SQEXPR ZRECST = ZREC;
+SQEXPR ZSHTST = ZSHT;
 INFO
 SQUTILDELETE
 SAFSETSCRAT0SCRAT1SCRAT2SCRAT3SCRAT4SCRAT5SCRAT6SCRAT7SCRAT8USPAR0USPAR1USPAR2
