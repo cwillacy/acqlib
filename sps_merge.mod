@@ -13,15 +13,16 @@
 &!
 &!==========================================================================
 & module sps_merge(           	  		&
-&  ident		: boolean=false,  	      &! switch to perform re-identing 
-&  rinc			: integer=1,  		        &! receiver increment odd/even flag
-&  sqsort_maxrec	: integer=1000		  &! sqsort max recs
+&  ident		: boolean=false,  	&! switch to perform re-identing 
+&  rinc			: integer=1,  		&! receiver increment odd/even flag 
+&  sqsort_maxrec	: integer=1000		&! sqsort max recs
 & )
 INFO  ================================================
 INFO  START OF SPS_MERGE SLANG MODULE PROCESSING SEQUENCE
 INFO  ================================================
 INFO
-& sub(@61,i6) rinc
+INFO
+& sub(@61,i6) rinc 
 SQTOPCSHTLIN SHTPTRECLIN RECPTCHNBEGCHNENDGRPBEGGRPEND
 SAFLIB            SAF_X           
 SAFLIB            SAF_S           
