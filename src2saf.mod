@@ -132,7 +132,7 @@ INFO  create the Julian date
 INFO
 INFO  the julian date format is CYYDDD, where:
 INFO  C is added to 19 to create the century e.g. 1+19 = 20
-INFO  YY is the year of the century
+INFO  YY is the year of the centuray
 INFO  DDD is the day i the year
 INFO
 SQEXPR SCRAT4 = 100000. + 21000. + USPAR5;
@@ -183,6 +183,7 @@ SAFSETUSPAR0
 INFO
 SQMANI  EXPR
 SQEXPR SHTST = 0.;
+SQEXPR ZSHTST = ZSHT;
 & sub(@67,i6) sqsort_maxrec
 SQSORT  YSHT        XSHT
 RNIDNT SHTST      INCPAN
