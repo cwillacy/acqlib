@@ -81,22 +81,22 @@ PLITEMPOINTS                                                      var1
 PLITEMPOINTS                                                      var1        
 & endif
 & if (second) then
-& 	if (cvary2) then
-& 		sub(@13,a6)  yvar2
-& 		sub(@19,a6)  xvar2
-& 		sub(@25,a12) col2 
-& 		sub(@37,a6)  zvar2 
-& 		sub(@43,f0)  size2 
-&		sub(@55,a12) symb2 
-PLITEMPOINTS                                                      var2  
-& 	else
-& 		sub(@13,a6)  yvar2
-& 		sub(@19,a6)  xvar2
-& 		sub(@25,a12) col2 
-& 		sub(@43,f0)  size2 
-& 		sub(@55,a12) symb2 
+&  if (cvary2) then
+&   sub(@13,a6) yvar2
+&   sub(@19,a6) xvar2
+&   sub(@25,a12) col2 
+&   sub(@37,a6) zvar2 
+&   sub(@43,f0) size2 
+&   sub(@55,a12) symb2 
+PLITEMPOINTS                                                      var2
+&  else
+&   sub(@13,a6) yvar2
+&   sub(@19,a6) xvar2
+&   sub(@25,a12) col2 
+&   sub(@43,f0) size2 
+&   sub(@55,a12) symb2 
 PLITEMPOINTS                                                      var2        
-& 	endif
+&  endif
 & endif
 PLKEY    OFF
 & sub(#1,a0) filename 
