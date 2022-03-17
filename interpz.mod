@@ -25,7 +25,13 @@ INFO
 INFO  reverse reciprocity if previously applied
 INFO
 & if (recip) then
-& 	call acqlib:util_v02:recipsaf()
+INFO
+INFO  swap idents
+INFO
+SQMANI
+SQEXPR SCRAT1 = XREC; SCRAT2 = YREC;SCRAT3 = ZREC;
+SQEXPR XREC = XSHT; YREC = YSHT;ZREC = ZSHT;
+SQEXPR XSHT = SCRAT1; YSHT = SCRAT2;ZSHT = SCRAT3;
 & endif
 INFO
 INFO  sort the input acq geom file and store locally 
@@ -100,7 +106,13 @@ SAFSET
 SAFSETSCRAT0
 INFO
 & if (recip) then
-& 	call acqlib:util_v02:recipsaf()
+INFO
+INFO  swap idents
+INFO
+SQMANI
+SQEXPR SCRAT1 = XREC; SCRAT2 = YREC;SCRAT3 = ZREC;
+SQEXPR XREC = XSHT; YREC = YSHT;ZREC = ZSHT;
+SQEXPR XSHT = SCRAT1; YSHT = SCRAT2;ZSHT = SCRAT3;
 & endif
 INFO  ================================================
 INFO  END OF INTERPZ SLANG MODULE PROCESSING SEQUENCE
