@@ -29,9 +29,6 @@ SAFLIB            SAF_S
 SAFLIB            SAF_R           
 INFO
 INFO
-INFO  SQMANI  EXPR
-INFO  SQEXPR SHT = SHTST ;
-INFO
 & if (ident) then
 INFO  Some re-calculation of the main index idents should be performed
 INFO  in order to ensure FWI will work correctly.
