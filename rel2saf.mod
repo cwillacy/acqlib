@@ -24,7 +24,7 @@ DSCOUT                  relational_file*
 INFO  MEDCTL FILE_SIZE=150GB
 CARDIM ASCII 
 & sub(#1,a0) filename
-FILNAM#1                                                                       
+FILNAM$TMPDIR/#1                                                                       
 INFO
 CON
 INFO  --------------------------------------------------

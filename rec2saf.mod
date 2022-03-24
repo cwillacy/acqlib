@@ -23,7 +23,7 @@ INFO
 DSCOUT                  receiver_file                                               
 CARDIM ASCII 
 & sub(#1,a0) filename
-FILNAM#1                                                                       
+FILNAM$TMPDIR/#1                                                                       
 INFO
 CON
 INFO  --------------------------------------------------
